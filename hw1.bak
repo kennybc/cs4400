@@ -1,0 +1,26 @@
+#lang plait
+
+; 1.1
+(define (my-max n1 n2)
+  (if (> n1 n2) n1 n2))
+
+; 1.2
+(define (all-greater? l n)
+  (cond
+    [(empty? l) #t]
+    [(cons? l) (and
+                (> (first l) n)
+                (all-greater? (rest l) n))]))
+
+; 1.3
+(define (sorted-first? f r)
+  (cond
+    [(empty? r) #t]
+    [(cons? r) (>= (first r) f)]))
+
+(define (sorted? l)
+  (cond
+    [(empty? l) #t]
+    [(cons? l) (and
+                (sorted-first? (first l) (rest l))
+                (sorted? (rest l)))]))
